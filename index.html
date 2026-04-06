@@ -10,6 +10,7 @@
         .horizontal-carousel {
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
+            -ms-overflow-style: none;
         }
         .horizontal-carousel::-webkit-scrollbar {
             display: none;
@@ -17,124 +18,162 @@
         .snap-item {
             scroll-snap-align: center;
         }
+        /* Efek Bingkai Kotak & Blur Background */
+        .photo-container {
+            aspect-ratio: 1 / 1;
+            position: relative;
+            background-color: #1a202c; /* Background gelap jika foto tidak kotak */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-blur-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(10px) brightness(0.5);
+            opacity: 0.6;
+        }
+        .photo-main {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Memastikan foto tidak gepeng */
+        }
     </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800">
+<body class="bg-slate-50 font-sans text-slate-800 antialiased">
 
-    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white pt-16 pb-24 px-6 text-center">
-        <span class="bg-yellow-400 text-blue-900 px-4 py-1 rounded-full font-bold text-sm uppercase tracking-wider">Promo Terbatas</span>
-        <h1 class="text-3xl md:text-5xl font-extrabold mt-4 mb-4 leading-tight">Bukit Intan Residence 2</h1>
-        <p class="text-lg opacity-90 max-w-2xl mx-auto text-sm md:text-lg">Solusi punya rumah sendiri dengan akad syariah yang mudah, transparan, dan sangat terjangkau.</p>
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white pt-20 pb-28 px-6 text-center">
+        <span class="bg-yellow-400 text-blue-900 px-5 py-2 rounded-full font-black text-sm uppercase tracking-widest shadow-lg">PROMO TERBATAS</span>
+        <h1 class="text-4xl md:text-6xl font-black mt-6 mb-4 leading-tight drop-shadow-md">Bukit Intan Residence 2</h1>
+        <p class="text-lg md:text-2xl opacity-95 max-w-2xl mx-auto leading-relaxed">Punya rumah sendiri dengan akad syariah mudah & DP sangat terjangkau.</p>
     </header>
 
-    <main class="max-w-4xl mx-auto -mt-16 px-4 pb-20">
+    <main class="max-w-4xl mx-auto -mt-20 px-4 pb-24">
         
-        <div class="bg-white rounded-2xl shadow-xl p-8 mb-10 border-t-4 border-yellow-400">
-            <h2 class="text-2xl font-bold text-blue-800 mb-6 flex items-center">
-                <i class="fas fa-tags mr-3 text-yellow-500"></i> DP 100 Ribu "All In"
+        <div class="bg-white rounded-3xl shadow-2xl p-8 mb-10 border-t-8 border-yellow-400">
+            <h2 class="text-2xl md:text-3xl font-black text-blue-800 mb-8 flex items-center">
+                <i class="fas fa-tags mr-4 text-yellow-500"></i> DP 100 Ribu "All In"
             </h2>
-            <p class="mb-6 text-slate-600 italic text-sm md:text-base">Cukup bayar 100 ribu sampai terima kunci. Sudah termasuk:</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-700">
-                <div class="flex items-start space-x-3 bg-blue-50 p-3 rounded-lg border border-blue-100">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <span class="text-sm font-medium">Bebas Biaya Akad (Notaris)</span>
+            <div class="grid grid-cols-1 gap-5 text-slate-700">
+                <div class="flex items-center space-x-4 bg-blue-50 p-5 rounded-2xl border border-blue-100 shadow-sm">
+                    <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                    <span class="text-lg font-bold">Bebas Semua Biaya Akad & Pajak</span>
                 </div>
-                <div class="flex items-start space-x-3 bg-blue-50 p-3 rounded-lg border border-blue-100">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <span class="text-sm font-medium">Bebas Biaya Pajak (BPHTB)</span>
-                </div>
-                <div class="flex items-start space-x-3 bg-blue-50 p-3 rounded-lg border border-blue-100">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <span class="text-sm font-medium">Bebas Biaya Balik Nama</span>
-                </div>
-                <div class="flex items-start space-x-3 bg-blue-50 p-3 rounded-lg border border-blue-100">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <span class="text-sm font-medium">Bebas Biaya PAM & Listrik</span>
+                <div class="flex items-center space-x-4 bg-blue-50 p-5 rounded-2xl border border-blue-100 shadow-sm">
+                    <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                    <span class="text-lg font-bold">Bebas Biaya PAM & Listrik</span>
                 </div>
             </div>
+            <p class="mt-6 text-center text-slate-500 font-medium italic">"Cukup bayar 100 ribu, langsung terima kunci!"</p>
         </div>
 
-        <div class="mb-10">
-            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center px-2">
-                <i class="fas fa-map-marker-alt mr-3 text-red-500"></i> Lokasi Perumahan
+        <div class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-6 flex items-center px-2">
+                <i class="fas fa-camera-retro mr-4 text-blue-600"></i> Galeri Unit
             </h2>
-            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-slate-200">
-                <div class="p-6">
-                    <p class="text-slate-600 mb-4 text-sm md:text-base font-medium">
-                        Mariana Ilir, Kec. Banyuasin I, Kab. Banyuasin
-                    </p>
-                    <p class="text-slate-500 text-xs md:text-sm">
-                        Kawasan berkembang dengan akses jalan cor beton dan bebas banjir di wilayah Palembang.
-                    </p>
+            <div class="horizontal-carousel flex overflow-x-auto space-x-4 pb-6 px-2">
+                
+                <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]">
+                    <div class="photo-container rounded-3xl shadow-xl border-4 border-white">
+                        <img src="foto1.jpeg" class="photo-blur-bg">
+                        <img src="foto1.jpeg" alt="Unit 1" class="photo-main">
+                    </div>
+                </div>
+                <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]">
+                    <div class="photo-container rounded-3xl shadow-xl border-4 border-white">
+                        <img src="foto2.jpeg" class="photo-blur-bg">
+                        <img src="foto2.jpeg" alt="Unit 2" class="photo-main">
+                    </div>
+                </div>
+                <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]">
+                    <div class="photo-container rounded-3xl shadow-xl border-4 border-white">
+                        <img src="foto3.jpeg" class="photo-blur-bg">
+                        <img src="foto3.jpeg" alt="Unit 3" class="photo-main">
+                    </div>
+                </div>
+                <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]">
+                    <div class="photo-container rounded-3xl shadow-xl border-4 border-white">
+                        <img src="foto4.jpeg" class="photo-blur-bg">
+                        <img src="foto4.jpeg" alt="Unit 4" class="photo-main">
+                    </div>
+                </div>
+                <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]">
+                    <div class="photo-container rounded-3xl shadow-xl border-4 border-white">
+                        <img src="foto5.jpeg" class="photo-blur-bg">
+                        <img src="foto5.jpeg" alt="Unit 5" class="photo-main">
+                    </div>
+                </div>
+                <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]">
+                    <div class="photo-container rounded-3xl shadow-xl border-4 border-white">
+                        <img src="foto6.jpeg" class="photo-blur-bg">
+                        <img src="foto6.jpeg" alt="Unit 6" class="photo-main">
+                    </div>
+                </div>
+                <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]">
+                    <div class="photo-container rounded-3xl shadow-xl border-4 border-white">
+                        <img src="foto7.jpeg" class="photo-blur-bg">
+                        <img src="foto7.jpeg" alt="Unit 7" class="photo-main">
+                    </div>
+                </div>
+
+                <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]">
+                    <div class="photo-container rounded-3xl shadow-xl bg-blue-700 flex flex-col items-center justify-center text-white p-10 text-center">
+                        <i class="fas fa-home text-6xl mb-6 text-yellow-400"></i>
+                        <h3 class="text-2xl font-black mb-3">Unit Terbatas!</h3>
+                        <p class="text-lg opacity-90">Blok depan sisa sedikit. Hubungi kami sekarang!</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-sm text-slate-400 font-bold animate-pulse uppercase tracking-tighter">← GESER UNTUK LIHAT SEMUA FOTO →</p>
+        </div>
+
+        <div class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-6 flex items-center px-2">
+                <i class="fas fa-map-marked-alt mr-4 text-red-500"></i> Lokasi Akurat
+            </h2>
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
+                <div class="p-8">
+                    <p class="text-lg font-bold text-slate-700 mb-2">Mariana Ilir, Kec. Banyuasin I</p>
+                    <p class="text-slate-500 text-sm md:text-base leading-relaxed">Akses jalan mulus cor beton, lingkungan asri, dan terjamin bebas banjir.</p>
                 </div>
                 <div class="w-full h-80 bg-slate-100">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.425444589255!2d104.81006!3d-2.913656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b7185f18e4b2b%3A0xd422833202a5c011!2sBukit%20Intan%20Residence%202!5e0!3m2!1sid!2sid!4v1715000000000!5m2!1sid!2sid" 
-                        class="w-full h-full border-0" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-                <div class="p-4 bg-slate-50 text-center border-t">
-                    <a href="https://maps.google.com/?cid=15285924336064905353&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" class="text-blue-600 font-bold text-sm hover:underline inline-flex items-center">
-                        <i class="fas fa-directions mr-2"></i> LIHAT RUTE DI GOOGLE MAPS
-                    </a>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.4449886365947!2d104.85547377402941!3d-2.973946239803159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b7185f18e4b2b%3A0xd422830202a5c01!2sBukit%20Intan%20Residence%202!5e0!3m2!1sid!2sid!4v1712398400000!5m2!1sid!2sid" 
+                        class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
 
-        <div class="mb-10">
-    <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center px-2">
-        <i class="fas fa-camera-retro mr-3 text-blue-600"></i> Galeri Unit
-    </h2>
-    <div class="horizontal-carousel flex overflow-x-auto space-x-4 pb-4">
-        <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]"><img src="foto1.jpeg" class="w-full h-64 object-cover rounded-2xl shadow-lg border-2 border-white"></div>
-        <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]"><img src="foto2.jpeg" class="w-full h-64 object-cover rounded-2xl shadow-lg border-2 border-white"></div>
-        <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]"><img src="foto3.jpeg" class="w-full h-64 object-cover rounded-2xl shadow-lg border-2 border-white"></div>
-        <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]"><img src="foto4.jpeg" class="w-full h-64 object-cover rounded-2xl shadow-lg border-2 border-white"></div>
-        <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]"><img src="foto5.jpeg" class="w-full h-64 object-cover rounded-2xl shadow-lg border-2 border-white"></div>
-        <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]"><img src="foto6.jpeg" class="w-full h-64 object-cover rounded-2xl shadow-lg border-2 border-white"></div>
-        <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px]"><img src="foto7.jpeg" class="w-full h-64 object-cover rounded-2xl shadow-lg border-2 border-white"></div>
-        
-        <div class="snap-item flex-shrink-0 w-[85%] md:w-[400px] bg-blue-700 rounded-2xl flex flex-col items-center justify-center text-white p-8 text-center shadow-lg">
-            <i class="fas fa-check-double text-4xl mb-4 text-yellow-400"></i>
-            <h3 class="text-xl font-bold mb-2">Unit Terbatas!</h3>
-            <p class="text-sm opacity-80">Hubungi kami untuk survey lokasi hari ini.</p>
-        </div>
-    </div>
-    <p class="text-center text-xs text-slate-400 mt-1 animate-pulse">← GESER FOTO →</p>
-	</div>
-
-        <div class="bg-blue-900 text-white rounded-2xl shadow-xl p-8 mb-12">
-            <h2 class="text-2xl font-bold mb-6 flex items-center">
-                <i class="fas fa-calculator mr-3 text-blue-300"></i> Estimasi Cicilan FLAT
+        <div class="bg-blue-900 text-white rounded-3xl shadow-2xl p-10 mb-14 text-center">
+            <h2 class="text-2xl md:text-3xl font-black mb-8 flex items-center justify-center">
+                <i class="fas fa-calculator mr-4 text-blue-300"></i> Estimasi Cicilan FLAT
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                <div class="bg-blue-800/50 p-6 rounded-xl border border-blue-700">
-                    <span class="block text-xs uppercase text-blue-300 mb-2">10 Tahun</span>
-                    <span class="text-xl font-bold">Rp 1.730.433</span>
+            <div class="space-y-6">
+                <div class="bg-blue-800/60 p-6 rounded-2xl border-2 border-blue-700">
+                    <span class="block text-sm uppercase font-black text-blue-300 mb-1">Tenor 10 Tahun</span>
+                    <span class="text-3xl font-black italic">Rp 1.730.433</span>
                 </div>
-                <div class="bg-blue-800/50 p-6 rounded-xl border border-blue-700">
-                    <span class="block text-xs uppercase text-blue-300 mb-2">15 Tahun</span>
-                    <span class="text-xl font-bold">Rp 1.287.290</span>
+                <div class="bg-blue-800/60 p-6 rounded-2xl border-2 border-blue-700">
+                    <span class="block text-sm uppercase font-black text-blue-300 mb-1">Tenor 15 Tahun</span>
+                    <span class="text-3xl font-black italic">Rp 1.287.290</span>
                 </div>
-                <div class="bg-blue-800/50 p-6 rounded-xl border border-blue-700 bg-blue-700 shadow-inner">
-                    <span class="block text-xs uppercase text-yellow-400 mb-2 font-bold">20 Tahun (Favorit)</span>
-                    <span class="text-xl font-bold">Rp 1.072.180-an</span>
+                <div class="bg-yellow-400 p-8 rounded-2xl border-4 border-yellow-500 shadow-inner scale-105">
+                    <span class="block text-sm uppercase font-black text-blue-900 mb-1">Tenor 20 Tahun (FAVORIT)</span>
+                    <span class="text-4xl font-black text-blue-900 italic underline">Rp 1.072.180</span>
                 </div>
             </div>
         </div>
 
-        <div class="text-center py-6 bg-white rounded-3xl shadow-xl border border-slate-100 p-8">
-            <p class="text-slate-500 mb-6 font-medium">Ingin tanya-tanya dulu? Chat sekarang!</p>
+        <div class="text-center">
             <a href="https://wa.me/6289695454020?text=Halo%20Admin,%20saya%20ingin%20tanya%20detail%20mengenai%20unit%20di%20Bukit%20Intan%20Residence%202" 
-               class="inline-flex items-center justify-center w-full md:w-auto px-10 py-5 bg-green-500 hover:bg-green-600 text-white font-extrabold text-xl rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95 duration-200">
-                <i class="fab fa-whatsapp mr-3 text-3xl"></i> HUBUNGI ADMIN (WA)
+               class="inline-flex items-center justify-center w-full px-8 py-7 bg-green-500 hover:bg-green-600 text-white font-black text-2xl rounded-full shadow-[0_15px_30px_rgba(34,197,94,0.4)] transition-all transform hover:-translate-y-2 active:scale-95 duration-300 border-b-8 border-green-700">
+                <i class="fab fa-whatsapp mr-4 text-4xl"></i> HUBUNGI ADMIN SEKARANG
             </a>
-            <p class="mt-8 text-[10px] text-slate-400 font-bold uppercase tracking-widest">RK Group Properti - Developer Terpercaya</p>
-			<p class="mt-8 text-[8px] text-slate-300 font-italic uppercase tracking-widest">copyrights: M. Firdaus Alfarizi 2026</p>
-			
+            <p class="mt-10 text-sm text-slate-400 font-black uppercase tracking-widest">RK Group Properti - Developer Terpercaya</p>
         </div>
 
     </main>
